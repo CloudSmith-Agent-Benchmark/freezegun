@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - master
+      - unit-test-frozen-clock
   push:
     branches:
-      - master
+      - unit-test-frozen-clock
 
 jobs:
   mypy:
