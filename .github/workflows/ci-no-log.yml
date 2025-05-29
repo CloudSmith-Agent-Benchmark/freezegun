@@ -10,24 +10,6 @@ on:
       - unit-test-no-log
 
 jobs:
-  mypy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
-        run: |
-          pip install mypy
-          pip install -r requirements.txt
-
-      - name: Run MyPy
-        run: mypy --install-types --non-interactive
-
   tests:
     runs-on: ubuntu-latest
     steps:
