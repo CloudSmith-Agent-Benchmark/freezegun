@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - main
+      - unit-test-no-log
   push:
     branches:
-      - main
+      - unit-test-no-log
 
 jobs:
   mypy:
