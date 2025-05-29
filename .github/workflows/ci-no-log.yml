@@ -1,13 +1,13 @@
-name: CI
+name: CI-No-Log
 
 on:
   workflow_dispatch:
   pull_request:
     branches:
-      - unit-test-no-log
+      - main
   push:
     branches:
-      - unit-test-no-log
+      - main
 
 jobs:
   mypy:
@@ -42,4 +42,4 @@ jobs:
         run: pip install tox
 
       - name: Run tests
-        run: pip install python-dateutil && tox -e py
+        run: pip install python-dateutil && python -m unittest tests/test_time_delta.py

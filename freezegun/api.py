@@ -1,5 +1,6 @@
 from . import config
 from ._async import wrap_coroutine
+from .utils import validate_time_delta
 import asyncio
 import copyreg
 import dateutil
@@ -495,7 +496,7 @@ def _parse_time_to_freeze(time_to_freeze_str: Optional[_Freezable]) -> datetime.
 
 def _parse_tz_offset(tz_offset: Union[datetime.timedelta, float]) -> datetime.timedelta:
     if isinstance(tz_offset, datetime.timedelta):
-        return tz_offset
+        return validate_time_delta(tz_offset)
     else:
         return datetime.timedelta(hours=tz_offset)
 
