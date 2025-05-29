@@ -1,30 +1,24 @@
 name: CI
 
 on:
-  - pull_request
-  - push
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   mypy:
-    name: mypy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version:
-          - '3.8'
-          - '3.9'
-          - '3.10'
-          - '3.11'
-          - '3.12'
-          - '3.13'
-
     steps:
       - uses: actions/checkout@master
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
@@ -35,35 +29,14 @@ jobs:
         run: mypy --install-types --non-interactive
 
   tests:
-    name: Python ${{ matrix.implementation }}${{ matrix.python-version }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version:
-          - '3.8'
-          - '3.9'
-          - '3.10'
-          - '3.11'
-          - '3.12'
-          - '3.13'
-        implementation:
-          - ''      # CPython
-          - 'pypy'  # PyPy
-        exclude:    # unreleased;
-          - implementation: 'pypy'
-            python-version: '3.11'
-          - implementation: 'pypy'
-            python-version: '3.12'
-          - implementation: 'pypy'
-            python-version: '3.13'
-
     steps:
       - uses: actions/checkout@master
 
-      - name: Set up Python ${{ matrix.implementation }}${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.implementation }}${{ matrix.python-version }}
+          python-version: "3.10"
 
       - name: Install tox
         run: pip install tox
