@@ -5,7 +5,7 @@ import time
 
 class TestUnfrozenTime(unittest.TestCase):
     
-    def test_time_based_assertion_without_freezegun(self):
+    def test_time_based_assertion_without_freezegun(self) -> None:
         start_time = datetime.datetime.now()
         
         time.sleep(0.1)
