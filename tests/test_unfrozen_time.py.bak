@@ -14,7 +14,7 @@ class TestUnfrozenTime(unittest.TestCase):
         
         time_diff_ms = (end_time - start_time).total_seconds() * 1000
         
-        self.assertLess(time_diff_ms, 150)
+        self.assertLess(time_diff_ms, 50)
 
 
 if __name__ == '__main__':
